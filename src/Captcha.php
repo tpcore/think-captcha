@@ -123,7 +123,7 @@ class Captcha
             $key = mb_strtolower($bag, 'UTF-8');
         }
 		
-        $this->cache->store('redis')->set($ckey,$key,$this->expire);
+        $this->cache->set($ckey,$key,$this->expire);
 
         return [
             'value' => $bag,
@@ -152,7 +152,7 @@ class Captcha
         $res = false;
 
         if ($code == $key) {
-            $this->cache->store('redis')->delete($ckey);
+            $this->cache->delete($ckey);
 	    $res = true;
         }else{
 	    return $res;
